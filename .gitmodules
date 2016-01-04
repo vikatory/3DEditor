@@ -1,0 +1,6 @@
+[submodule "public"]
+	path = public
+	url = https://github.com/vikatory/public
+[submodule "pyengine"]
+	path = pyengine
+	url = https://github.com/vikatory/pyengine

@@ -1,0 +1,16 @@
+*.pdb
+
+*.tlog
+*.log
+*.exe
+*.sdf
+*.ilk
+*.ipch
+*.suo
+*.obj
+*.idb
+*.opensdf
+*.exp
+*.pyc
+x64/Debug
+debug
