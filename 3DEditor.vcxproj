@@ -11,10 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Directx\D3DWin.cpp" />
+    <ClCompile Include="Directx\SystemClass.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_D3DWin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ToolBar.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_D3DWin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -34,6 +42,17 @@
     <ClCompile Include="Public\PyEngine\PyWrap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="Directx\D3DWin.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing D3DWin.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DWIN64 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I." "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtWidgets" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtGui" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtANGLE" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtCore" "-I.\debug" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\mkspecs\win32-msvc2015"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing D3DWin.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I." "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtWidgets" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtGui" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtANGLE" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtCore" "-I.\release" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\mkspecs\win32-msvc2015"</Command>
+    </CustomBuild>
+    <ClInclude Include="Directx\SystemClass.h" />
     <ClInclude Include="Gui\EditorMain.h" />
     <ClInclude Include="Gui\QtCommon.h" />
     <ClInclude Include="Gui\Settings.h" />
@@ -128,7 +147,7 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\qtmaind.lib;shell32.lib;F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\Qt5Widgetsd.lib;F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\Qt5Guid.lib;F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\Qt5Cored.lib;libEGLd.lib;libGLESv2d.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\qtmaind.lib;shell32.lib;F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\Qt5Widgetsd.lib;F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\Qt5Guid.lib;F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib\Qt5Cored.lib;libEGLd.lib;libGLESv2d.lib;gdi32.lib;user32.lib;D3D11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>F:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>

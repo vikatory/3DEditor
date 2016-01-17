@@ -17,7 +17,7 @@ int RunEditor(int argc, char *argv[])
 	QApplication app(argc, argv);
 
 	MainWindow mainWin(Q_NULLPTR, 0);
-	mainWin.resize(800, 600);
+	mainWin.resize(1000, 600);
 	mainWin.show();
 
 	return app.exec();

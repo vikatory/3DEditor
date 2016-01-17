@@ -14,7 +14,7 @@
 #include "qtcommon.h"
 #include "settings.h"
 //#include "qt_win/win_knowledge.h"
-//#include "D3DWin.h"
+#include "Directx\D3DWin.h"
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(parent, flags)
 {
@@ -29,8 +29,8 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(par
 	//center->setMinimumSize(400, 205);
 	//setCentralWidget(center);
 
-	//D3DRenderWidget* widget = new D3DRenderWidget(this);
-	//setCentralWidget(widget);
+	D3DRenderWidget* widget = new D3DRenderWidget(this);
+	setCentralWidget(widget);
 
 	setupMenuBar();
 	setupToolBar();

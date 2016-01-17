@@ -36,6 +36,9 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Directx">
+      <UniqueIdentifier>{09b62eb5-f8e8-43b1-9fc0-07e17aa58d42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gui\EditorMain.cpp">
@@ -89,6 +92,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Directx\D3DWin.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_D3DWin.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_D3DWin.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Directx\SystemClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\EditorMain.h">
@@ -130,6 +145,9 @@
     <ClInclude Include="Gui\Settings.h">
       <Filter>Gui</Filter>
     </ClInclude>
+    <ClInclude Include="Directx\SystemClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Gui\MainWindow.h">
@@ -137,6 +155,9 @@
     </CustomBuild>
     <CustomBuild Include="Gui\ToolBar.h">
       <Filter>Gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Directx\D3DWin.h">
+      <Filter>Directx</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
