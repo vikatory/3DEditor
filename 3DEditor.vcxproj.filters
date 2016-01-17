@@ -6,10 +6,137 @@
       <Extensions>cpp;cxx;c;def</Extensions>
       <ParseFiles>true</ParseFiles>
     </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{dcc78372-9ecf-4820-84ee-7267fd24fa6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public">
+      <UniqueIdentifier>{0e9d8db5-32b8-4809-8a8b-3f69f53c367b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Common">
+      <UniqueIdentifier>{9d5e84dc-4648-4c83-b13e-f6e74d36be63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\PyEngine">
+      <UniqueIdentifier>{714ccdb6-162b-491d-a959-14c74f6c4c68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OtherTask">
+      <UniqueIdentifier>{4bc22776-be9e-45d2-bda2-fd9ea3f4b354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{28feb7f4-7918-499d-84eb-6b78f70d8cbc}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{5376d85c-b347-42f9-9146-4b7a301e4e54}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Gui\EditorMain.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\Common\Common.cpp">
+      <Filter>Public\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\Common\CustomConsole.cpp">
+      <Filter>Public\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\Common\singleton.cpp">
+      <Filter>Public\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\Common\sys.cpp">
+      <Filter>Public\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\PyEngine\CommonPyFunc.cpp">
+      <Filter>Public\PyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\PyEngine\PyEngine.cpp">
+      <Filter>Public\PyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\PyEngine\PyManualWrap.cpp">
+      <Filter>Public\PyEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Public\PyEngine\PyWrap.cpp">
+      <Filter>Public\PyEngine</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OtherTask\OtherTask.cpp">
+      <Filter>OtherTask</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\MainWindow.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Settings.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\ToolBar.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ToolBar.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Gui\EditorMain.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Common\Common.h">
+      <Filter>Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Common\CustomConsole.h">
+      <Filter>Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Common\platform.h">
+      <Filter>Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Common\singleton.h">
+      <Filter>Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Common\sys.h">
+      <Filter>Public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\PyEngine\CommonPyFunc.h">
+      <Filter>Public\PyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\PyEngine\PyEngine.h">
+      <Filter>Public\PyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\PyEngine\PyManualWrap.h">
+      <Filter>Public\PyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\PyEngine\PyWrap.h">
+      <Filter>Public\PyEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherTask\OtherTask.h">
+      <Filter>OtherTask</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\QtCommon.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Settings.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Gui\MainWindow.h">
+      <Filter>Gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Gui\ToolBar.h">
+      <Filter>Gui</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
