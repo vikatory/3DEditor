@@ -20,7 +20,6 @@ int RunEditor(int argc, char *argv[])
 	mainWin.resize(800, 600);
 	mainWin.show();
 
-	cout << CEditConfig::getInstance()->iconPath() << endl;
 	return app.exec();
 }
 

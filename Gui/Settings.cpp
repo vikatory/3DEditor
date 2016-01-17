@@ -16,14 +16,14 @@ string CEditConfig::currentPath()
 
 string CEditConfig::resourcePath()
 {
-	string path = currentPath();
+	string path = m_CurrentPath;
 	path.append("\\resource");
 	return path;
 }
 
 string CEditConfig::iconPath()
 {
-	string path = currentPath();
+	string path = m_CurrentPath;
 	path.append("\\resource\\icon");
 	return path;
 }
