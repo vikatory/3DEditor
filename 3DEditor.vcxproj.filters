@@ -92,6 +92,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Directx\D3DClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="Directx\GraphicsClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="Directx\AxisModelClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="Directx\CameraClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="Directx\ColorShaderClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="Directx\ModelClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
     <ClCompile Include="Directx\D3DWin.cpp">
       <Filter>Directx</Filter>
     </ClCompile>
@@ -100,9 +118,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_D3DWin.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Directx\SystemClass.cpp">
-      <Filter>Directx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +160,25 @@
     <ClInclude Include="Gui\Settings.h">
       <Filter>Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Directx\SystemClass.h">
+    <ClInclude Include="Directx\D3DClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\GraphicsClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\AxisModelClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\CameraClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\ColorShaderClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\ModelClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\common.h">
       <Filter>Directx</Filter>
     </ClInclude>
   </ItemGroup>

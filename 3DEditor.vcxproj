@@ -11,8 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Directx\AxisModelClass.cpp" />
+    <ClCompile Include="Directx\CameraClass.cpp" />
+    <ClCompile Include="Directx\ColorShaderClass.cpp" />
+    <ClCompile Include="Directx\D3DClass.cpp" />
     <ClCompile Include="Directx\D3DWin.cpp" />
-    <ClCompile Include="Directx\SystemClass.cpp" />
+    <ClCompile Include="Directx\GraphicsClass.cpp" />
+    <ClCompile Include="Directx\ModelClass.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_D3DWin.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -42,6 +47,11 @@
     <ClCompile Include="Public\PyEngine\PyWrap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Directx\AxisModelClass.h" />
+    <ClInclude Include="Directx\CameraClass.h" />
+    <ClInclude Include="Directx\ColorShaderClass.h" />
+    <ClInclude Include="Directx\common.h" />
+    <ClInclude Include="Directx\D3DClass.h" />
     <CustomBuild Include="Directx\D3DWin.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing D3DWin.h...</Message>
@@ -52,7 +62,8 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I." "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtWidgets" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtGui" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtANGLE" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\include\QtCore" "-I.\release" "-IF:\qt\qt-everywhere-opensource-src-5.5.1\qtbase\mkspecs\win32-msvc2015"</Command>
     </CustomBuild>
-    <ClInclude Include="Directx\SystemClass.h" />
+    <ClInclude Include="Directx\GraphicsClass.h" />
+    <ClInclude Include="Directx\ModelClass.h" />
     <ClInclude Include="Gui\EditorMain.h" />
     <ClInclude Include="Gui\QtCommon.h" />
     <ClInclude Include="Gui\Settings.h" />
