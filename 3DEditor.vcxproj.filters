@@ -119,6 +119,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_D3DWin.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Directx\D3DWidget.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_D3DWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_D3DWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\EditorMain.h">
@@ -190,6 +199,9 @@
       <Filter>Gui</Filter>
     </CustomBuild>
     <CustomBuild Include="Directx\D3DWin.h">
+      <Filter>Directx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Directx\D3DWidget.h">
       <Filter>Directx</Filter>
     </CustomBuild>
   </ItemGroup>

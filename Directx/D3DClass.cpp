@@ -11,22 +11,18 @@ D3DClass::D3DClass(void)
 	m_depthStencilState = 0;
 	m_depthStencilView = 0;
 	m_rasterState = 0;
-
 }
 
 D3DClass::D3DClass(const D3DClass& other)
 {
 }
 
-
-
 D3DClass::~D3DClass(void)
 {
 }
 
 //Initialize函数包含完成D3D设置的所有代码。
-bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen,
-	float screenDepth, float screenNear)
+bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
 	HRESULT result;
 	IDXGIFactory* factory;

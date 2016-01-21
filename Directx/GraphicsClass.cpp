@@ -8,7 +8,6 @@ GraphicsClass::GraphicsClass(void)
 	m_Model = 0;
 	m_AxisModel = 0;
 	m_ColorShader = 0;
-
 }
 
 GraphicsClass::GraphicsClass(const GraphicsClass&)
@@ -116,6 +115,7 @@ void GraphicsClass::Shutdown()
 		delete m_Model;
 		m_Model = 0;
 	}
+
 	// 释放坐标轴模型对象.
 	if (m_AxisModel)
 	{
