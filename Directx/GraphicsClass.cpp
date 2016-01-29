@@ -167,8 +167,8 @@ bool GraphicsClass::Render()
 	bool result;
 
 
-	// 设置framebuffer.为浅蓝色
-	m_D3D->BeginScene(0.0f, 0.0f, 0.5f, 1.0f);
+	// 设置framebuffer颜色
+	m_D3D->BeginScene(0.3608f, 0.3608f, 0.3608f, 1.0f);
 
 	// 得到3个矩阵.
 	m_Camera->getViewMatrix(&viewMatrix);

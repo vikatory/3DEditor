@@ -26,6 +26,11 @@ public:
 protected:
 	virtual void resizeEvent(QResizeEvent *e);
 	virtual void paintEvent(QPaintEvent *e);
+	virtual void mousePressEvent(QMouseEvent *event);
+	virtual void mouseMoveEvent(QMouseEvent *event);
+	virtual void mouseReleaseEvent(QMouseEvent *event);
+	virtual void wheelEvent(QWheelEvent * event);
+	virtual void keyPressEvent(QKeyEvent *event);
 
 	bool initialize();
 	void d3dRender();
@@ -33,6 +38,10 @@ protected:
 
 private:
 	GraphicsClass* m_Graphics;
+
+	int m_StartMoveX;
+	int m_StartMoveY;
+	XMFLOAT3 m_CameraPos;
 };
 
 

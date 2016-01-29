@@ -15,7 +15,7 @@ public:
 	CameraClass(const CameraClass&);
 	~CameraClass(void);
 
-	void strafe(float units); // l左右
+	void strafe(float units); // 左右
 	void fly(float units);    // 上下
 	void walk(float units);   // 前后
 

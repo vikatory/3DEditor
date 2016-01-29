@@ -1,5 +1,7 @@
 #include "D3DClass.h"
 #include <stdlib.h>
+#include <iostream>
+using namespace std;
 
 D3DClass::D3DClass(void)
 {
@@ -117,6 +119,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	{
 		return false;
 	}
+
 	// 释放显示模式列表
 	delete[] displayModeList;
 	displayModeList = 0;
@@ -190,11 +193,18 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
 	//不设置标志
-	swapChainDesc.Flags = 0;
+	//swapChainDesc.Flags = 0;
+	swapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	// 设置feature level为D3D11
 	// 如果显卡不支持D3D11,我们能够通过设置这个参数，使用D3D10,或者9.
 	featureLevel = D3D_FEATURE_LEVEL_11_0;
+
+	//在debug模式下，使得创建的设备支持debug.
+	UINT createDeviceFlags = 0;
+#if defined(DEBUG) || defined(_DEBUG)  
+	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
 
 	// 创建交换链，设备以及设备上下文.
 	result = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, &featureLevel, 1,
@@ -203,6 +213,49 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	{
 		return false;
 	}
+
+	//按照文档，这些代码会禁止alt+enter切换到全屏，但是在我计算机上，引起了我的电脑死机
+	//....
+	// 重新创建一个DirectX graphics interface factory.
+	//result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&factory);
+	//if(FAILED(result))	
+	//	{
+	//	return false;
+	//	}
+
+	////禁止DXGI监视消息队列，捕捉ALT+ENTER，在全屏和窗口模式之间切换
+	//factory->MakeWindowAssociation(hwnd,DXGI_MWA_NO_WINDOW_CHANGES|DXGI_MWA_NO_ALT_ENTER  );
+
+
+	//// 释放接口工厂.
+	//factory->Release();
+	//factory = 0;
+
+
+	//得到 D3D11CreateDeviceAndSwapChain函数内部使用接口工厂
+	IDXGIDevice * pDXGIDevice;
+	result = m_device->QueryInterface(__uuidof(IDXGIDevice), (void **)&pDXGIDevice);
+
+	if (FAILED(result))
+	{
+		//HR(result);
+		return false;
+	}
+
+	IDXGIAdapter * pDXGIAdapter;
+	result = pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void **)&pDXGIAdapter);
+	if (FAILED(result))
+	{
+		//HR(result);
+		return false;
+	}
+
+	IDXGIFactory * pIDXGIFactory;
+	pDXGIAdapter->GetParent(__uuidof(IDXGIFactory), (void **)&pIDXGIFactory);
+
+	//禁止alt+enter全屏
+	pIDXGIFactory->MakeWindowAssociation(hwnd, DXGI_MWA_NO_WINDOW_CHANGES | DXGI_MWA_NO_ALT_ENTER);
+
 
 	// 得到交换链中的后缓冲指针.
 	result = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBufferPtr);

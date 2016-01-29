@@ -1,4 +1,5 @@
 #include "AxisModelClass.h"
+#include "common.h"
 
 
 AxisModelClass::AxisModelClass(void)
@@ -130,6 +131,7 @@ bool AxisModelClass::InitializeBuffers(ID3D11Device* device)
 	result = device->CreateBuffer(&vertexBufferDesc, &vertexData, &m_vertexBuffer);
 	if (FAILED(result))
 	{
+		//HR(result);
 		return false;
 	}
 

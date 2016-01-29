@@ -1,6 +1,13 @@
 #include "D3DWidget.h"
-
+#include <QKeyEvent>
 #include <QTimer>
+#include <iostream>
+#include <DirectxMath.h>
+using namespace DirectX;
+using namespace std;
+
+const float PI = 3.14159265358979323f;
+
 
 D3DWidget::D3DWidget(QWidget *parent): QWidget(parent)
 {
@@ -9,7 +16,7 @@ D3DWidget::D3DWidget(QWidget *parent): QWidget(parent)
 
 	QTimer* timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-
+	setFocusPolicy(Qt::StrongFocus);
 	initialize();
 }
 
@@ -32,6 +39,109 @@ void D3DWidget::paintEvent(QPaintEvent *e)
 {
 	d3dRender();
 }
+
+void D3DWidget::mousePressEvent(QMouseEvent *event)
+{
+	m_StartMoveX = event->x();
+	m_StartMoveY = event->y();
+	m_Graphics->m_Camera->getPosition(&m_CameraPos);
+	//cout << 11111111 << endl;
+}
+
+void D3DWidget::mouseMoveEvent(QMouseEvent *event)
+{
+	int nDeltaX = event->x() - m_StartMoveX;
+	int nDeltaY = event->y() - m_StartMoveY;
+	if (event->modifiers() & Qt::AltModifier)
+	{
+		switch (event->buttons())
+		{
+		case Qt::LeftButton:
+			cout << "Ðý×ªÉãÏñ»ú" << endl;
+			break;
+		case Qt::MidButton:
+			cout << "Æ½ÒÆÉãÏñ»ú" << endl;
+			cout << nDeltaX << "  " << nDeltaY << endl;
+			m_Graphics->m_Camera->strafe(-nDeltaX);
+			update();
+			break;
+		case Qt::RightButton:
+			cout << "Ò¡ÒÆÉãÏñ»ú" << endl;
+			break;
+		default:
+			break;
+		}
+	}
+	//cout << 222222222222 << "  "<<event->buttons()<< endl;
+}
+
+void D3DWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+	//cout << 3333333 << endl;
+}
+
+void D3DWidget::wheelEvent(QWheelEvent * event)
+{
+	cout << "Ò¡ÒÆÉãÏñ»ú" << endl;
+}
+
+void D3DWidget::keyPressEvent(QKeyEvent *event)
+{
+	
+	switch (event->key())
+	{
+
+	case Qt::Key_W:	//Ç°ºó
+		cout << "w" << endl;
+		m_Graphics->m_Camera->walk(-0.1);
+		break;
+	case Qt::Key_S:
+		m_Graphics->m_Camera->walk(0.1);
+		cout << "s" << endl;
+		break;
+	case Qt::Key_A:	//×óÓÒ
+		m_Graphics->m_Camera->strafe(-0.1);
+		cout << "a" << endl;
+		break;
+	case Qt::Key_D:
+		m_Graphics->m_Camera->strafe(0.1);
+		cout << "d" << endl;
+		break;
+	case Qt::Key_Q:	//ÉÏÏÂ
+		m_Graphics->m_Camera->fly(-0.1);
+		cout << "q" << endl;
+		break;
+	case Qt::Key_E:
+		m_Graphics->m_Camera->fly(0.1);
+		cout << "e" << endl;
+		break;
+	case Qt::Key_Z:
+		m_Graphics->m_Camera->pitch(PI / 180);
+		cout << "z" << endl;
+		break;
+	case Qt::Key_X:
+		m_Graphics->m_Camera->yaw(PI / 180);
+		cout << "x" << endl;
+		break;
+	case Qt::Key_C:
+		m_Graphics->m_Camera->roll(PI / 180);
+		cout << "c" << endl;
+		break;
+	case Qt::Key_R://ÉãÏñ»ú¸´Î»	
+	{
+		// ÉèÖÃÉãÏñ»úÎ»ÖÃ.
+		m_Graphics->m_Camera->Reset();
+		XMFLOAT3 campos = XMFLOAT3(0.0f, 0.0f, -10.0f);
+		m_Graphics->m_Camera->setPosition(&campos);
+		cout << "x" << endl;
+		break;
+	}
+	default:
+		break;
+	}
+	update();
+}
+
 
 bool D3DWidget::initialize()
 {
