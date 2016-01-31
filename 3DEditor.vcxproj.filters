@@ -128,6 +128,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_D3DWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Directx\ModelClass2.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\EditorMain.h">
@@ -188,6 +191,9 @@
       <Filter>Directx</Filter>
     </ClInclude>
     <ClInclude Include="Directx\common.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\ModelClass2.h">
       <Filter>Directx</Filter>
     </ClInclude>
   </ItemGroup>

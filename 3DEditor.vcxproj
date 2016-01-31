@@ -19,6 +19,7 @@
     <ClCompile Include="Directx\D3DWin.cpp" />
     <ClCompile Include="Directx\GraphicsClass.cpp" />
     <ClCompile Include="Directx\ModelClass.cpp" />
+    <ClCompile Include="Directx\ModelClass2.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_D3DWidget.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -81,6 +82,7 @@
     </CustomBuild>
     <ClInclude Include="Directx\GraphicsClass.h" />
     <ClInclude Include="Directx\ModelClass.h" />
+    <ClInclude Include="Directx\ModelClass2.h" />
     <ClInclude Include="Gui\EditorMain.h" />
     <ClInclude Include="Gui\QtCommon.h" />
     <ClInclude Include="Gui\Settings.h" />

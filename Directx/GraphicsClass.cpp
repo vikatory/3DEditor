@@ -52,14 +52,14 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	m_Camera->setPosition(&campos);
 
 	// 创建模型对象.
-	m_Model = new ModelClass;
+	m_Model = new ModelClass2;
 	if (!m_Model)
 	{
 		return false;
 	}
 
 	// 初始化模型对象.
-	result = m_Model->Initialize(m_D3D->GetDevice());
+	result = m_Model->Initialize(m_D3D->GetDevice(), 300, 300, 1.0f);
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);

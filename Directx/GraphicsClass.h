@@ -4,6 +4,7 @@
 #include "d3dclass.h"
 #include "cameraclass.h"
 #include "modelclass.h"
+#include "modelclass2.h"
 #include "AxisModelClass.h"
 #include "colorshaderclass.h"
 
@@ -31,7 +32,7 @@ private:
 	//定义一个D3DClass类成员变量
 	D3DClass* m_D3D;
 
-	ModelClass* m_Model;
+	ModelClass2* m_Model;
 	AxisModelClass* m_AxisModel;
 	ColorShaderClass* m_ColorShader;
 };
