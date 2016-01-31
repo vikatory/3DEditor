@@ -136,6 +136,13 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	factory->Release();
 	factory = 0;
 
+	//如果屏幕高度或者宽度为0，则会创建深度缓冲失败，
+	//当窗口最小化时候，会出现窗口为0的情况。
+	//if (screenWidth < 1)
+	//	screenWidth = 1;
+	//if (screenHeight <1)
+	//	screenHeight = 1;
+
 	// 初始化交换链描述
 	ZeroMemory(&swapChainDesc, sizeof(swapChainDesc));
 
@@ -257,6 +264,46 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	pIDXGIFactory->MakeWindowAssociation(hwnd, DXGI_MWA_NO_WINDOW_CHANGES | DXGI_MWA_NO_ALT_ENTER);
 
 
+	////分开创建device和交换链，可以屏蔽dxgi自动的hook alt+enter
+	////注意的两点：如果用第一个参数用NULL,第二个参数为D3D_DRIVER_TYPE_HARDWARE，则后面创建swapchain
+	////会fail，如果直接用adapter，不改变第二个参数，则会提示创建设备失败，adapter无效。
+	//result = D3D11CreateDevice(adapter, D3D_DRIVER_TYPE_UNKNOWN, NULL, createDeviceFlags, &featureLevel, 1,
+	//	D3D11_SDK_VERSION, &m_device, NULL, &m_deviceContext);
+
+	//if (FAILED(result))
+	//{
+	//	//HR(result);
+	//	return false;
+	//}
+
+	////创建交换链
+	//result = factory->CreateSwapChain(m_device, &swapChainDesc, &m_swapChain);
+	//if (FAILED(result))
+	//{
+	//	//HR(result);
+	//	return false;
+	//}
+
+	////禁止DXGI监视消息队列，捕捉ALT+ENTER，在全屏和窗口模式之间切换
+	//factory->MakeWindowAssociation(hwnd, DXGI_MWA_NO_WINDOW_CHANGES | DXGI_MWA_NO_ALT_ENTER);
+
+	//// 释放显示模式列表
+	//delete[] displayModeList;
+	//displayModeList = 0;
+
+	////释放适配器输出.
+	//adapterOutput->Release();
+	//adapterOutput = 0;
+
+	////释放适配器
+	//adapter->Release();
+	//adapter = 0;
+
+	//// 释放接口工厂.
+	//factory->Release();
+	//factory = 0;
+
+
 	// 得到交换链中的后缓冲指针.
 	result = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBufferPtr);
 	if (FAILED(result))
@@ -359,7 +406,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	rasterDesc.DepthBias = 0;
 	rasterDesc.DepthBiasClamp = 0.0f;
 	rasterDesc.DepthClipEnable = true;
-	rasterDesc.FillMode = D3D11_FILL_SOLID;
+	rasterDesc.FillMode = D3D11_FILL_WIREFRAME; //D3D11_FILL_WIREFRAME
 	rasterDesc.FrontCounterClockwise = false;
 	rasterDesc.MultisampleEnable = false;
 	rasterDesc.ScissorEnable = false;
