@@ -20,6 +20,8 @@
     <ClCompile Include="Directx\GraphicsClass.cpp" />
     <ClCompile Include="Directx\ModelClass.cpp" />
     <ClCompile Include="Directx\ModelClass2.cpp" />
+    <ClCompile Include="Directx\TimerClass.cpp" />
+    <ClCompile Include="Directx\WaterModelClass.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_D3DWidget.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -83,6 +85,8 @@
     <ClInclude Include="Directx\GraphicsClass.h" />
     <ClInclude Include="Directx\ModelClass.h" />
     <ClInclude Include="Directx\ModelClass2.h" />
+    <ClInclude Include="Directx\TimerClass.h" />
+    <ClInclude Include="Directx\WaterModelClass.h" />
     <ClInclude Include="Gui\EditorMain.h" />
     <ClInclude Include="Gui\QtCommon.h" />
     <ClInclude Include="Gui\Settings.h" />

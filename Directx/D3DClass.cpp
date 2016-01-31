@@ -138,10 +138,10 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 
 	//如果屏幕高度或者宽度为0，则会创建深度缓冲失败，
 	//当窗口最小化时候，会出现窗口为0的情况。
-	//if (screenWidth < 1)
-	//	screenWidth = 1;
-	//if (screenHeight <1)
-	//	screenHeight = 1;
+	if (screenWidth < 1)
+		screenWidth = 1;
+	if (screenHeight <1)
+		screenHeight = 1;
 
 	// 初始化交换链描述
 	ZeroMemory(&swapChainDesc, sizeof(swapChainDesc));
@@ -406,7 +406,8 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	rasterDesc.DepthBias = 0;
 	rasterDesc.DepthBiasClamp = 0.0f;
 	rasterDesc.DepthClipEnable = true;
-	rasterDesc.FillMode = D3D11_FILL_WIREFRAME; //D3D11_FILL_WIREFRAME
+	//rasterDesc.FillMode = D3D11_FILL_WIREFRAME; //D3D11_FILL_WIREFRAME
+	rasterDesc.FillMode = D3D11_FILL_SOLID;
 	rasterDesc.FrontCounterClockwise = false;
 	rasterDesc.MultisampleEnable = false;
 	rasterDesc.ScissorEnable = false;
@@ -589,3 +590,30 @@ void D3DClass::GetVideoCardInfo(char* cardName, int& memory)
 	return;
 }
 
+bool D3DClass::SetFillMode(D3D11_FILL_MODE mode)
+{
+	D3D11_RASTERIZER_DESC rasterDesc;
+	// 设置光栅化描述，指定多边形如何被渲染.
+	rasterDesc.AntialiasedLineEnable = false;
+	rasterDesc.CullMode = D3D11_CULL_BACK;
+	rasterDesc.DepthBias = 0;
+	rasterDesc.DepthBiasClamp = 0.0f;
+	rasterDesc.DepthClipEnable = true;
+	rasterDesc.FillMode = mode; //D3D11_FILL_SOLID; //D3D11_FILL_WIREFRAME
+	rasterDesc.FrontCounterClockwise = false;
+	rasterDesc.MultisampleEnable = false;
+	rasterDesc.ScissorEnable = false;
+	rasterDesc.SlopeScaledDepthBias = 0.0f;
+
+	bool result;
+	// 创建光栅化状态
+	result = m_device->CreateRasterizerState(&rasterDesc, &m_rasterState);
+	if (FAILED(result))
+	{
+		//HR(result);
+		return false;
+	}
+	//设置光栅化状态，使其生效
+	m_deviceContext->RSSetState(m_rasterState);
+	return true;
+}

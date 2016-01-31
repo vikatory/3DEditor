@@ -18,10 +18,18 @@ D3DWidget::D3DWidget(QWidget *parent): QWidget(parent)
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 	setFocusPolicy(Qt::StrongFocus);
 	initialize();
+	timer->start(1000 / 60);
 }
 
 D3DWidget::~D3DWidget()
 {
+	// 释放计时器对象.
+	if (m_Timer)
+	{
+		delete m_Timer;
+		m_Timer = 0;
+	}
+
 	if (m_Graphics)
 	{
 		m_Graphics->Shutdown();
@@ -160,14 +168,31 @@ bool D3DWidget::initialize()
 	{
 		return false;
 	}
+
+	// 创建计时器对象.
+	m_Timer = new TimerClass;
+	if (!m_Timer)
+	{
+		return false;
+	}
+
+	// 初始化计时器对象
+	result = m_Timer->Initialize();
+	if (!result)
+	{
+		MessageBox((HWND)winId(), L"Could not initialize the Timer object.", L"Error", MB_OK);
+		return false;
+	}
 }
 
 void D3DWidget::d3dRender()
 {
 	bool result;
 
+	m_Timer->Frame();
+
 	// 执行帧渲染函数.
-	result = m_Graphics->Frame();
+	result = m_Graphics->Frame(m_Timer->GetTime() / 1000);
 	if (!result)
 	{
 		return;

@@ -8,6 +8,7 @@ GraphicsClass::GraphicsClass(void)
 	m_Model = 0;
 	m_AxisModel = 0;
 	m_ColorShader = 0;
+	m_WaterModel = 0;
 }
 
 GraphicsClass::GraphicsClass(const GraphicsClass&)
@@ -66,7 +67,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
-	// 创轴建模型对象.
+	// 创建轴建模型对象.
 	m_AxisModel = new AxisModelClass;
 	if (!m_AxisModel)
 	{
@@ -77,6 +78,21 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the axis model object.", L"Error", MB_OK);
+		return false;
+	}
+
+	// 创建水模型对象.
+	m_WaterModel = new WaterModelClass;
+	if (!m_WaterModel)
+	{
+		return false;
+	}
+
+	// 初始化水模型对象.
+	result = m_WaterModel->Initialize(m_D3D->GetDevice(), 257, 257, 0.5f, 0.03f, 3.25f, 0.4f);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the water model object.", L"Error", MB_OK);
 		return false;
 	}
 
@@ -124,6 +140,14 @@ void GraphicsClass::Shutdown()
 		m_AxisModel = 0;
 	}
 
+	// 释放水模型对象.
+	if (m_WaterModel)
+	{
+		m_WaterModel->Shutdown();
+		delete m_WaterModel;
+		m_WaterModel = 0;
+	}
+
 	// 释放摄像机对象
 	if (m_Camera)
 	{
@@ -143,14 +167,14 @@ void GraphicsClass::Shutdown()
 }
 
 
-bool GraphicsClass::Frame()
+bool GraphicsClass::Frame(float dt)
 {
 	bool result;
 
 
 	// 调用Render函数，渲染3D场景
 	// Render是GraphicsClass的私有函数.
-	result = Render();
+	result = Render(dt);
 	if (!result)
 	{
 		return false;
@@ -160,7 +184,7 @@ bool GraphicsClass::Frame()
 }
 
 
-bool GraphicsClass::Render()
+bool GraphicsClass::Render(float dt)
 {
 
 	XMFLOAT4X4 viewMatrix, projectionMatrix, worldMatrix;
@@ -175,6 +199,9 @@ bool GraphicsClass::Render()
 	m_D3D->GetWorldMatrix(worldMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
+	//设置为实体填充模式
+	m_D3D->SetFillMode(D3D11_FILL_SOLID);
+
 	m_AxisModel->Render(m_D3D->GetDeviceContext());
 	// 用shader渲染.
 	result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_AxisModel->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
@@ -184,6 +211,35 @@ bool GraphicsClass::Render()
 	}
 	// 把模型顶点和索引缓冲放入管线，准备渲染.
 	m_Model->Render(m_D3D->GetDeviceContext());
+
+	// 用shader渲染.
+	result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+	if (!result)
+	{
+		return false;
+	}
+
+	static float t_base = 0.0f;
+	static float total_time = 0.0f;
+	total_time += dt;
+	if (total_time - t_base >= 0.25f)
+	{
+		t_base += 0.25f;
+
+		int i = 5 + rand() % 250;
+		int j = 5 + rand() % 250;
+
+		//得到1到2之间的一个浮点数
+		float r = 1.0 + (float)(rand()) / (float)RAND_MAX*(2.0 - 1.0);
+
+		m_WaterModel->disturb(i, j, r);
+	}
+
+	m_WaterModel->update(m_D3D->GetDeviceContext(), dt);
+	//设置线框模式
+	m_D3D->SetFillMode(D3D11_FILL_WIREFRAME);
+	// 把模型顶点和索引缓冲放入管线，准备渲染.
+	m_WaterModel->Render(m_D3D->GetDeviceContext());
 
 	// 用shader渲染.
 	result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);

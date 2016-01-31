@@ -34,6 +34,7 @@ public:
 	void GetOrthoMatrix(XMFLOAT4X4&);
 
 	void GetVideoCardInfo(char*, int&);
+	bool SetFillMode(D3D11_FILL_MODE);
 
 private:
 	bool					m_vsync_enabled; //是否启用垂直同步

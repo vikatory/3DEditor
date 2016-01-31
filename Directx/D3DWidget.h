@@ -7,6 +7,7 @@
 #include <D3Dcompiler.h>
 #include <assert.h>
 #include "GraphicsClass.h"
+#include "TimerClass.h"
 
 class QResizeEvent;
 class QPaintEvent;
@@ -38,6 +39,7 @@ protected:
 
 private:
 	GraphicsClass* m_Graphics;
+	TimerClass* m_Timer;
 
 	int m_StartMoveX;
 	int m_StartMoveY;

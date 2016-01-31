@@ -131,6 +131,12 @@
     <ClCompile Include="Directx\ModelClass2.cpp">
       <Filter>Directx</Filter>
     </ClCompile>
+    <ClCompile Include="Directx\WaterModelClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
+    <ClCompile Include="Directx\TimerClass.cpp">
+      <Filter>Directx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\EditorMain.h">
@@ -194,6 +200,12 @@
       <Filter>Directx</Filter>
     </ClInclude>
     <ClInclude Include="Directx\ModelClass2.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\WaterModelClass.h">
+      <Filter>Directx</Filter>
+    </ClInclude>
+    <ClInclude Include="Directx\TimerClass.h">
       <Filter>Directx</Filter>
     </ClInclude>
   </ItemGroup>
